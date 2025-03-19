@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Pay Test</title>
+    <title>Paytm Payment Test</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,34 +22,19 @@
     </style>
 </head>
 <body>
-    <h2>Test Google Pay UPI Payment</h2>
-    <p>Click the button below to check if Google Pay opens with a ₹60 payment.</p>
+    <h2>Test Paytm UPI Payment</h2>
+    <p>Click the button below to pay ₹60 using Paytm UPI.</p>
     
-    <a id="gpayButton">
-        <button>Pay ₹60 with Google Pay</button>
+    <a id="paytmButton">
+        <button>Pay ₹60 with Paytm UPI</button>
     </a>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const upiID = "9778250566@ptyes"; // Replace with valid UPI ID
-            const transactionId = "T" + Date.now();
-            const orderId = "ORD" + Math.floor(Math.random() * 1000000);
-            const amount = "1.00"; // Ensure decimal format
-            const merchantName = "Mohammed Anas a r";
-            const note = "Payment for She Space Ticket";
+            const paytmLink = "https://paytm.me/YOUR-PAYTM-PAYMENT-LINK"; // Replace with your Paytm Payment Link
 
-            // UPI deep link
-            const upiLink = `upi://pay?pa=${upiID}&pn=${merchantName}&tid=${transactionId}&tr=${orderId}&tn=${note}&am=${amount}&cu=INR`;
-
-            // Google Pay specific intent link
-            const gpayIntentLink = `intent://upi/pay?pa=${upiID}&pn=${merchantName}&tid=${transactionId}&tr=${orderId}&tn=${note}&am=${amount}&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end;`;
-
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            if (/android/i.test(userAgent)) {
-                document.getElementById("gpayButton").setAttribute("href", gpayIntentLink);
-            } else {
-                document.getElementById("gpayButton").setAttribute("href", upiLink);
-            }
+            document.getElementById("paytmButton").setAttribute("href", paytmLink);
+            document.getElementById("paytmButton").setAttribute("target", "_blank"); // Opens in a new tab
         });
     </script>
 </body>
