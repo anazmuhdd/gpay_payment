@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paytm Payment Test</title>
+    <title>UPI Payment</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,19 +22,25 @@
     </style>
 </head>
 <body>
-    <h2>Test Paytm UPI Payment</h2>
-    <p>Click the button below to pay ₹60 using Paytm UPI.</p>
+    <h2>Test UPI Payment</h2>
+    <p>Click the button below to pay ₹60 using any UPI app.</p>
     
-    <a id="paytmButton">
-        <button>Pay ₹60 with Paytm UPI</button>
+    <a id="upiButton">
+        <button>Pay ₹60 with UPI</button>
     </a>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const paytmLink = "https://paytm.me/YOUR-PAYTM-PAYMENT-LINK"; // Replace with your Paytm Payment Link
+            const upiID = "anasmonar-1@oksbi"; // Replace with your UPI ID
+            const transactionId = "T" + Date.now();
+            const orderId = "ORD" + Math.floor(Math.random() * 1000000);
+            const amount = "60.00"; // Make sure to use decimal format
+            const merchantName = "Anas Mohammed";
+            const note = "Payment for She Space Ticket";
 
-            document.getElementById("paytmButton").setAttribute("href", paytmLink);
-            document.getElementById("paytmButton").setAttribute("target", "_blank"); // Opens in a new tab
+            const upiDeepLink = `upi://pay?pa=${upiID}&pn=${merchantName}&tid=${transactionId}&tr=${orderId}&tn=${note}&am=${amount}&cu=INR`;
+
+            document.getElementById("upiButton").setAttribute("href", upiDeepLink);
         });
     </script>
 </body>
