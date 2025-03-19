@@ -31,18 +31,16 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const upiID = "anasmohammed@okhdfcbank"; // Replace with your UPI ID
-            const tid = Date.now(); // Unique transaction ID
-            const tr = "ORD" + Math.floor(Math.random() * 1000000); // Random Order ID
-            const amount = 60; // Payment Amount
-            const merchantName = "SheSpace";
-            const note = "Payment for She Space";
+            const upiID = "anasmonar-1@oksbi"; // Replace with your actual UPI ID
+            const transactionId = "T" + Date.now(); 
+            const orderId = "ORD" + Math.floor(Math.random() * 1000000); 
+            const amount = 60;
+            const merchantName = "Anas Mohammed";
+            const note = "Payment for She Space Ticket";
 
-            // Generate UPI link
-            const gpayLink = `upi://pay?pa=${upiID}&pn=${merchantName}&tid=${tid}&tr=${tr}&tn=${note}&am=${amount}&cu=INR`;
+            const gpayIntent = `intent://pay?pa=${upiID}&pn=${merchantName}&tid=${transactionId}&tr=${orderId}&tn=${note}&am=${amount}&cu=INR&mode=04&purpose=00#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end;`;
 
-            // Set button link
-            document.getElementById("gpayButton").setAttribute("href", gpayLink);
+            document.getElementById("gpayButton").setAttribute("href", gpayIntent);
         });
     </script>
 </body>
