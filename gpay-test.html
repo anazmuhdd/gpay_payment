@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Pay Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        button {
+            background-color: #4285F4;
+            color: white;
+            padding: 15px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Test Google Pay UPI Payment</h2>
+    <p>Click the button below to check if Google Pay opens with a ₹60 payment.</p>
+    
+    <a id="gpayButton">
+        <button>Pay ₹60 with Google Pay</button>
+    </a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const upiID = "anasmohammed@okhdfcbank"; // Replace with your UPI ID
+            const tid = Date.now(); // Unique transaction ID
+            const tr = "ORD" + Math.floor(Math.random() * 1000000); // Random Order ID
+            const amount = 60; // Payment Amount
+            const merchantName = "SheSpace";
+            const note = "Payment for She Space";
+
+            // Generate UPI link
+            const gpayLink = `upi://pay?pa=${upiID}&pn=${merchantName}&tid=${tid}&tr=${tr}&tn=${note}&am=${amount}&cu=INR`;
+
+            // Set button link
+            document.getElementById("gpayButton").setAttribute("href", gpayLink);
+        });
+    </script>
+</body>
+</html>
