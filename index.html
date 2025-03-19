@@ -18,8 +18,6 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
         }
     </style>
 </head>
@@ -33,17 +31,26 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const upiID = "anasmonar-1@oksbi"; // Replace with your actual UPI ID
+            const upiID = "anasmonar-1@oksbi"; // Replace with your UPI ID
             const transactionId = "T" + Date.now();
             const orderId = "ORD" + Math.floor(Math.random() * 1000000);
             const amount = 60;
             const merchantName = "Anas Mohammed";
             const note = "Payment for She Space Ticket";
 
-            // Standard UPI URL for cross-app compatibility (Google Pay, PhonePe, Paytm, etc.)
-            const gpayLink = `upi://pay?pa=${upiID}&pn=${merchantName}&tid=${transactionId}&tr=${orderId}&tn=${note}&am=${amount}&cu=INR`;
+            // Standard UPI deep link (iOS + Android default behavior)
+            const upiLink = `upi://pay?pa=${upiID}&pn=${merchantName}&tid=${transactionId}&tr=${orderId}&tn=${note}&am=${amount}&cu=INR`;
 
-            document.getElementById("gpayButton").setAttribute("href", gpayLink);
+            // Google Pay specific intent link (Android only)
+            const gpayIntentLink = `intent://upi/pay?pa=${upiID}&pn=${merchantName}&tid=${transactionId}&tr=${orderId}&tn=${note}&am=${amount}&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end;`;
+
+            // Detect iOS or Android
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/android/i.test(userAgent)) {
+                document.getElementById("gpayButton").setAttribute("href", gpayIntentLink);
+            } else {
+                document.getElementById("gpayButton").setAttribute("href", upiLink);
+            }
         });
     </script>
 </body>
